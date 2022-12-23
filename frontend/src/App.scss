@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar {
+  @apply fixed right-0 top-0 bg-gray-900 text-white w-[210px] h-screen p-5 flex flex-col;
+}
+
+
+
+.btn {
+  @apply  px-4 py-1 text-gray-50
+}
+
+.submit-btn {
+  @apply bg-blue-700 px-5 py-2 
+}
+
+.form-wrapper {
+  @apply w-[500px] mx-auto flex flex-col h-screen justify-center items-center
+}
+
+.form {
+  @apply bg-gray-200 px-10 py-16;
+
+}
+
+input,
+textarea {
+  border: 1px solid lightblue;
+  padding: .5rem 1rem;
+  margin-bottom: .5rem;
+}
+
+
+
