@@ -32,5 +32,11 @@ textarea {
   margin-bottom: .5rem;
 }
 
+// navbar
+.nav-link a {
+  @apply px-2 hover:text-blue-700
+}
 
-
+.mobile-nav {
+  @apply block md:hidden p-4 fixed top-[60px] bg-gray-800 w-full h-screen duration-500
+}

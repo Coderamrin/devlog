@@ -13,7 +13,7 @@ const PostItem = ({ post }) => {
   return (
     <div className="bg-gray-200 p-2 mb-5">
       <h2 className="text-2xl font-bold capitalize">{post.title}</h2>
-      <p className="mb-5">{post.content}</p>
+      <p className="mb-5">{post.content.substr(1, 150)} ...</p>
 
       <button className="btn bg-blue-600 hover:bg-blue-800 mr-4">
         Preview

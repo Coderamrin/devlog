@@ -9,7 +9,7 @@ const BlogLayout = ({ children }) => {
       <div className="container-fluid">
         <div className="row">
           <Header />
-          <div className="md:pl-60 pl-8">{children}</div>
+          <div className="container mx-auto">{children}</div>
           <Footer />
         </div>
       </div>

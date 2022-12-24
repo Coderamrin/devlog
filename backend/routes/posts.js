@@ -18,7 +18,9 @@ router.get("/", async (req, res) => {
 //Get all the posts
 router.get("/my-posts", protect, async (req, res) => {
   try {
-    const posts = await Post.find({ author: req.user.id });
+    const posts = await Post.find({ author: req.user.id }).sort({
+      createdAt: -1,
+    });
     res.status(200).json(posts);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -83,7 +85,7 @@ router.put("/edit/:id", protect, async (req, res) => {
   }
 
   try {
-    const updatedPost = await Post.findOneAndUpdate(id, req.body, {
+    const updatedPost = await Post.findOneAndUpdate({ _id: id }, req.body, {
       new: true,
     });
 

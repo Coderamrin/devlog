@@ -30,7 +30,19 @@ GET http://localhost:5000/api/posts/638ac9c9611fd6e153b657ac
 
 ###
 GET http://localhost:5000/api/posts/my-posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODliYTgyNmE4MTUzODliZjgwMmRmYSIsImlhdCI6MTY2OTk4NDk1OSwiZXhwIjoxNjcyNTc2OTU5fQ.wdvk0PcEGd7fYU26t0vYSUIkjJ5DzaeHrt-x9t3UHhM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODlmNDI4YTIzYTQ2NGJlYzQxZDUwNSIsImlhdCI6MTY3MTU1NDQ5NSwiZXhwIjoxNjc0MTQ2NDk1fQ.VtR-ZhpBlBS9Wu5ewymnP64JE1g2MJj1rXBdWDwUFa4
+
+
+
+###
+PUT http://localhost:5000/api/posts/edit/63a659aed244071e1d0a2f96
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODlmNDI4YTIzYTQ2NGJlYzQxZDUwNSIsImlhdCI6MTY3MTU1NDQ5NSwiZXhwIjoxNjc0MTQ2NDk1fQ.VtR-ZhpBlBS9Wu5ewymnP64JE1g2MJj1rXBdWDwUFa4
+
+{
+    "title": "title 4 updated"
+}
+
 
 
 ###
@@ -41,12 +53,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODliYTgyN
 {
     "content": "I am a Muslim."
 }
-
-###
-POST http://localhost:5000/api/posts/638ac9c9611fd6e153b657ac/638af15e12558ebaa5d1258a/delete
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODliYTgyNmE4MTUzODliZjgwMmRmYSIsImlhdCI6MTY2OTk4NDk1OSwiZXhwIjoxNjcyNTc2OTU5fQ.wdvk0PcEGd7fYU26t0vYSUIkjJ5DzaeHrt-x9t3UHhM
-
-###
-
 

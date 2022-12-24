@@ -25,7 +25,6 @@ const EditPost = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-
     if (!user) {
       navigate("/login");
     }
@@ -34,14 +33,14 @@ const EditPost = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const post = {
+    const toUpdate = {
       title,
       content,
       image,
       id,
     };
 
-    dispatch(editPost(post));
+    dispatch(editPost(toUpdate));
 
     if (isSuccess) {
       navigate("/dashboard");

@@ -76,8 +76,10 @@ export const addPost = createAsyncThunk(
 
 export const editPost = createAsyncThunk(
   "post/update",
-  async (postData, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
+      const { title, content, image } = data;
+
       const token = thunkAPI.getState().auth.user.token;
 
       const config = {
@@ -87,8 +89,12 @@ export const editPost = createAsyncThunk(
       };
 
       const res = await axios.put(
-        url + `/edit/${postData.id}`,
-        postData,
+        url + `/edit/${data.id}`,
+        {
+          title,
+          content,
+          image,
+        },
         config
       );
 
@@ -160,7 +166,7 @@ export const postSlice = createSlice({
       .addCase(addPost.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.posts.push(action.payload);
+        state.posts.unshift(action.payload);
         state.isSuccess = true;
       })
       .addCase(addPost.rejected, (state, action) => {
@@ -181,7 +187,6 @@ export const postSlice = createSlice({
         });
 
         state.posts = filtered;
-        console.log(action.payload);
       })
       .addCase(deletePost.rejected, (state, action) => {
         state.loading = false;
@@ -192,16 +197,14 @@ export const postSlice = createSlice({
         state.loading = true;
       })
       .addCase(editPost.fulfilled, (state, action) => {
-        const { title, content, image } = action.payload;
-
         state.loading = false;
         state.error = null;
-        state.posts = state.posts.map((post) =>
-          post._id === action.payload.id
-            ? { ...post, title, content, image }
-            : post
-        );
         state.isSuccess = true;
+
+        state.posts = state.posts.map((post) => {
+          return post._id === action.payload._id ? action.payload : post;
+        });
+
       })
       .addCase(editPost.rejected, (state, action) => {
         state.loading = false;

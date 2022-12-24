@@ -9,6 +9,7 @@ import EditPost from "./pages/Dashboard/EditPost";
 import EditAuthor from "./pages/Dashboard/NewPost";
 
 import BlogHome from "./pages/Blog/Home";
+import Post from "./pages/Blog/Post";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/dashboard/edit-author" element={<EditAuthor />} />
 
         <Route path="/" element={<BlogHome />} />
+        <Route path="/post/:id" element={<Post />} />
       </Routes>
     </div>
   );

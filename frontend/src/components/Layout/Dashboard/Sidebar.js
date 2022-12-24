@@ -46,7 +46,10 @@ const Sidebar = () => {
           </li>
         </ul>
 
-        <button onClick={handleLogout} className="mt-auto bg-orange-400 px-5 py-2 hover:bg-orange-600">
+        <button
+          onClick={handleLogout}
+          className="mt-auto bg-orange-400 px-5 py-2 hover:bg-orange-600"
+        >
           Logout
         </button>
       </div>
@@ -58,7 +61,9 @@ const Sidebar = () => {
               <li className="p-2" onClick={handleToggle}>
                 <AiOutlineMenu size={20} />
               </li>
-              <li className="p-2">Home</li>
+              <Link to={"/"} className="p-2">
+                Home
+              </Link>
             </ul>
           </div>
 
