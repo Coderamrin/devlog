@@ -28,7 +28,7 @@ const EditPost = () => {
     if (!user) {
       navigate("/login");
     }
-  }, [dispatch, navigate]);
+  }, [dispatch, navigate, user]);
 
   function handleSubmit(e) {
     e.preventDefault();

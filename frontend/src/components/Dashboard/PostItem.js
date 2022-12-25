@@ -13,11 +13,14 @@ const PostItem = ({ post }) => {
   return (
     <div className="bg-gray-200 p-2 mb-5">
       <h2 className="text-2xl font-bold capitalize">{post.title}</h2>
-      <p className="mb-5">{post.content.substr(1, 150)} ...</p>
+      <p className="mb-5">{post.content.substr(0, 150)} ...</p>
 
-      <button className="btn bg-blue-600 hover:bg-blue-800 mr-4">
+      <Link
+        to={`/post/${post._id}`}
+        className="px-3 py-3 btn bg-blue-600 hover:bg-blue-800 mr-4"
+      >
         Preview
-      </button>
+      </Link>
       <Link
         to={`/dashboard/edit-post/${post._id}`}
         className=" px-3 py-2 text-white bg-blue-700 hover:bg-blue-900 mr-4"
