@@ -9,7 +9,7 @@ const initialState = {
   isSuccess: null,
 };
 
-const url = "http://localhost:5000/api/posts";
+const url = "https://devlog.onrender.com/api/posts";
 
 export const getPosts = createAsyncThunk(
   "post/getPosts",
@@ -204,7 +204,6 @@ export const postSlice = createSlice({
         state.posts = state.posts.map((post) => {
           return post._id === action.payload._id ? action.payload : post;
         });
-
       })
       .addCase(editPost.rejected, (state, action) => {
         state.loading = false;

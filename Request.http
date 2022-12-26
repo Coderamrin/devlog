@@ -1,4 +1,4 @@
-GET  http://localhost:5000/
+GET  https://devlog.onrender.com/api/posts
 
 ###
 GET  http://localhost:5000/api/user/loggedin
@@ -26,7 +26,7 @@ Content-Type: application/json
 } 
  
 ###
-GET http://localhost:5000/api/posts/638ac9c9611fd6e153b657ac
+GET https://devlog.onrender.com/api/posts/63a6549d01dd4d1ecd19880c
 
 ###
 GET http://localhost:5000/api/posts/my-posts

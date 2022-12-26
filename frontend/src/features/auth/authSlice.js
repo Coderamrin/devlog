@@ -11,7 +11,7 @@ const initialState = {
   error: null,
 };
 
-const url = "http://localhost:5000/api/user";
+const url = "https://devlog.onrender.com/api/user";
 
 // register
 export const register = createAsyncThunk(
