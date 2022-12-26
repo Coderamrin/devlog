@@ -26,21 +26,29 @@ const Header = () => {
           Devlog
         </a>
 
-        <ul className="nav-link hidden md:block">
+        <ul className="nav-link hidden md:flex">
           <li className="flex">
-            <Link>Home</Link>
-            {user ? (
-              <>
-                <Link to={"/dashboard"}>Dashboard</Link>
-                <Link onClick={handleLogout}>Logout</Link>
-              </>
-            ) : (
-              <>
-                <Link>Login</Link>
-                <Link>Signup</Link>
-              </>
-            )}
+            <Link to={"/"}>Home</Link>
           </li>
+          {user ? (
+            <>
+              <li>
+                <Link to={"/dashboard"}>Dashboard</Link>{" "}
+              </li>
+              <li>
+                <Link onClick={handleLogout}>Logout</Link>{" "}
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to={"/login"}>Login</Link>
+              </li>
+              <li>
+                <Link to={"/signup"}>Signup</Link>
+              </li>
+            </>
+          )}
         </ul>
 
         <button className="block md:hidden" onClick={handleToggle}>
