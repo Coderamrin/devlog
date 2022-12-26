@@ -4,9 +4,12 @@
   "description": "multi author blog website. dev.to clone.",
   "main": "server.js",
   "scripts": {
+    "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "clientinstall": "npm install --prefix client",
+    "render-postbuild": "--prefix client && npm run build --prefix client"
   },
   "keywords": [
     "blog",
