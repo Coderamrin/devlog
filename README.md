@@ -1,6 +1,8 @@
 # devlog
 Multi author blog application with MERN
 
+### Live: https://devlogg.onrender.com/
+
 ## Technologies I used: 
 
 ### Frontend
