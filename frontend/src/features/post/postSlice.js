@@ -3,16 +3,31 @@ import axios from "axios";
 
 const initialState = {
   posts: [],
+  myPosts: [],
   post: null,
   loading: false,
   error: null,
   isSuccess: null,
 };
 
-const url = "https://devlog.onrender.com/api/posts";
+// const url = "https://devlog.onrender.com/api/posts";
+const url = "http://localhost:5000/api/posts";
 
 export const getPosts = createAsyncThunk(
   "post/getPosts",
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get(url + "/");
+
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getMyPosts = createAsyncThunk(
+  "post/getMyPosts",
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -36,15 +51,8 @@ export const getPost = createAsyncThunk(
   "post/getPost",
   async (id, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-      const res = await axios.get(url + `/${id}`, config);
+      const res = await axios.get(url + `/${id}`);
 
       return res.data;
     } catch (error) {
@@ -129,7 +137,14 @@ export const deletePost = createAsyncThunk(
 export const postSlice = createSlice({
   name: "post",
   initialState,
-  reducers: {},
+  reducers: {
+    resetPost: (state) => {
+      state.post = null;
+    },
+    resetMyPosts: (state) => {
+      state.myPosts = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getPosts.pending, (state) => {
@@ -142,6 +157,20 @@ export const postSlice = createSlice({
         state.isSuccess = true;
       })
       .addCase(getPosts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.isSuccess = false;
+      })
+      .addCase(getMyPosts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getMyPosts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.myPosts = action.payload;
+        state.isSuccess = true;
+      })
+      .addCase(getMyPosts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
         state.isSuccess = false;
@@ -212,5 +241,7 @@ export const postSlice = createSlice({
       });
   },
 });
+
+export const { resetPost } = postSlice.actions;
 
 export default postSlice.reducer;

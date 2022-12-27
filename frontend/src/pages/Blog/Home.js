@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import BlogLayout from "../../components/Layout/BlogLayout";
 import PostItem from "../../components/Blog/PostItem";
+import Loading from "../../components/Blog/Loading";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../features/post/postSlice";
+
 
 const BlogHome = () => {
   const { posts, loading } = useSelector((state) => state.post);
@@ -11,14 +13,16 @@ const BlogHome = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+    if (posts.length === 0) {
+      dispatch(getPosts());
+    }
+  }, [dispatch, posts.length]);
 
   if (loading) {
     return (
       <>
         <BlogLayout>
-          <p>Loading ...</p>
+          <Loading />
         </BlogLayout>
       </>
     );

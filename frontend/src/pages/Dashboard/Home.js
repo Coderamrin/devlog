@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { getPosts } from "../../features/post/postSlice";
+import { getMyPosts } from "../../features/post/postSlice";
 
 import DashboardLayout from "../../components/Layout/DashboardLayout";
 import PostItem from "../../components/Dashboard/PostItem";
 
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
-  const { posts, loading } = useSelector((state) => state.post);
+  const { myPosts, loading } = useSelector((state) => state.post);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,10 +18,12 @@ const Home = () => {
       navigate("/login");
     }
 
-    dispatch(getPosts());
-  }, [dispatch, navigate, user]); 
+    if (myPosts.length === 0) {
+      dispatch(getMyPosts());
+    }
+  }, [dispatch, navigate, user, myPosts.length]);
 
-  if (loading) {
+  if (loading || myPosts.length === 0) {
     return (
       <DashboardLayout>
         <h1 className="text-3xl font-bold mb-5">Posts</h1>
@@ -34,10 +36,10 @@ const Home = () => {
     <DashboardLayout>
       <>
         <h1 className="text-3xl font-bold mb-5">Posts</h1>
-         
-        {posts.length > 0 ? (
+
+        {myPosts.length > 0 ? (
           <>
-            {posts.map((post, i) => (
+            {myPosts.map((post, i) => (
               <PostItem key={i} post={post} />
             ))}
           </>

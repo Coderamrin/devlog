@@ -12,7 +12,7 @@ const Register = () => {
 
   const { name, email, password } = state;
 
-  const { user } = useSelector((state) => state.auth);
+  const { user, error } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -69,6 +69,9 @@ const Register = () => {
           }
           value={password}
         />
+
+        <p className="text-red-800">{error}</p>
+
         <button type="submit" className="btn submit-btn">
           Submit
         </button>

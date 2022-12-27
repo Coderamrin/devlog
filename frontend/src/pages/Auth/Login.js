@@ -11,7 +11,7 @@ const Login = () => {
   });
 
   const { email, password } = state;
-  const { user } = useSelector((state) => state.auth);
+  const { user, error } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,6 +55,7 @@ const Login = () => {
             setState({ ...state, [e.target.name]: e.target.value })
           }
         />
+        <p className="text-red-800">{error}</p>
         <button type="submit" className="btn submit-btn">
           Submit
         </button>

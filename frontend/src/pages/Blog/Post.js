@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
-import { getPost } from "../../features/post/postSlice";
+import { getPost, resetPost } from "../../features/post/postSlice";
 import BlogLayout from "../../components/Layout/BlogLayout";
+import Loading from "../../components/Blog/Loading";
 
 const Post = () => {
   const { post } = useSelector((state) => state.post);
@@ -14,12 +15,18 @@ const Post = () => {
 
   useEffect(() => {
     dispatch(getPost(id));
+
+    return () => {
+      dispatch(resetPost());
+    };
   }, [id, dispatch]);
 
   if (!post) {
     return (
       <>
-        <BlogLayout>Loading ...</BlogLayout>
+        <BlogLayout>
+          <Loading />
+        </BlogLayout>
       </>
     );
   }

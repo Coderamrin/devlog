@@ -1,0 +1,4 @@
+Features to add:
+1. cleanup post page on Unmount
+2. get only my post on dashboard
+3. get all the post on home page
