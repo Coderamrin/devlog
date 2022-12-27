@@ -10,8 +10,8 @@ const initialState = {
   isSuccess: null,
 };
 
-// const url = "https://devlog.onrender.com/api/posts";
-const url = "http://localhost:5000/api/posts";
+const url = "https://devlog.onrender.com/api/posts";
+// const url = "http://localhost:5000/api/posts";
 
 export const getPosts = createAsyncThunk(
   "post/getPosts",
