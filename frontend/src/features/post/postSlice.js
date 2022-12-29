@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const URL = process.env.REACT_APP_API;
 
 const initialState = {
   posts: [],
@@ -10,14 +11,11 @@ const initialState = {
   isSuccess: null,
 };
 
-const url = "https://devlog.onrender.com/api/posts";
-// const url = "http://localhost:5000/api/posts";
-
 export const getPosts = createAsyncThunk(
   "post/getPosts",
   async (_, thunkAPI) => {
     try {
-      const res = await axios.get(url + "/");
+      const res = await axios.get(URL + "posts/");
 
       return res.data;
     } catch (error) {
@@ -38,7 +36,7 @@ export const getMyPosts = createAsyncThunk(
         },
       };
 
-      const res = await axios.get(url + "/my-posts", config);
+      const res = await axios.get(URL + "posts/my-posts", config);
 
       return res.data;
     } catch (error) {
@@ -51,8 +49,7 @@ export const getPost = createAsyncThunk(
   "post/getPost",
   async (id, thunkAPI) => {
     try {
-
-      const res = await axios.get(url + `/${id}`);
+      const res = await axios.get(URL + `posts/${id}`);
 
       return res.data;
     } catch (error) {
@@ -73,7 +70,7 @@ export const addPost = createAsyncThunk(
         },
       };
 
-      const res = await axios.post(url + "/new-post", postData, config);
+      const res = await axios.post(URL + "posts/new-post", postData, config);
 
       return res.data;
     } catch (error) {
@@ -97,7 +94,7 @@ export const editPost = createAsyncThunk(
       };
 
       const res = await axios.put(
-        url + `/edit/${data.id}`,
+        URL + `posts/edit/${data.id}`,
         {
           title,
           content,
@@ -125,7 +122,7 @@ export const deletePost = createAsyncThunk(
         },
       };
 
-      const res = await axios.delete(url + `/delete/${id}`, config);
+      const res = await axios.delete(URL + `posts/delete/${id}`, config);
 
       return res.data;
     } catch (error) {

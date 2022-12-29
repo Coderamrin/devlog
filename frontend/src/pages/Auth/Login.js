@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import { login } from "../../features/auth/authSlice";
 
 const Login = () => {
@@ -60,6 +60,16 @@ const Login = () => {
           Submit
         </button>
       </form>
+
+      <div className="flex py-5">
+        <Link to="/" className="font-bold hover:text-blue-400">
+          Home |
+        </Link>
+        <p className="mx-4">Don't have an Account? | </p>
+        <Link to="/register" className="font-bold hover:text-blue-400">
+          Signup
+        </Link>
+      </div>
     </div>
   );
 };

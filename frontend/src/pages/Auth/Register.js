@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../features/auth/authSlice";
@@ -76,6 +77,16 @@ const Register = () => {
           Submit
         </button>
       </form>
+
+      <div className="flex py-5">
+        <Link to="/" className="font-bold hover:text-blue-400">
+          Home |
+        </Link>
+        <p className="mx-4">Already have an Account? | </p>
+        <Link to="/login" className="font-bold hover:text-blue-400">
+          Login
+        </Link>
+      </div>
     </div>
   );
 };

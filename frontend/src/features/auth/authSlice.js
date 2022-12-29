@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const URL = process.env.REACT_APP_API;
 
 // login, regisster, get loggedin user
 
@@ -11,16 +12,13 @@ const initialState = {
   error: null,
 };
 
-const url = "https://devlog.onrender.com/api/user";
-// const url = "http://localhost:5000/api/posts"; 
-
 // register
 export const register = createAsyncThunk(
   "auth/register",
 
   async (user, thunkAPI) => {
     try {
-      const res = await axios.post(url + "/register", user);
+      const res = await axios.post(URL + "user/register", user);
 
       if (res.data) {
         localStorage.setItem("user", JSON.stringify(res.data));
@@ -39,7 +37,7 @@ export const login = createAsyncThunk(
 
   async (user, thunkAPI) => {
     try {
-      const res = await axios.post(url + "/login", user);
+      const res = await axios.post(URL + "user/login", user);
 
       if (res.data) {
         localStorage.setItem("user", JSON.stringify(res.data));

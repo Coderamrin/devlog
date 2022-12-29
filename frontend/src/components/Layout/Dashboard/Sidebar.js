@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../../features/auth/authSlice";
 
 const Sidebar = () => {
   const [toggle, setToggle] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -15,6 +16,8 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+
+    navigate("/");
   };
 
   return (
